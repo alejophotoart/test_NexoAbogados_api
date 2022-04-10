@@ -18,8 +18,8 @@ class CreateRecurrentsTable extends Migration
 
             $table->dateTimeTz('date_recurrent')->nullable();
 
-            $table->bigInteger('subcription_id')->unsigned()->nullable(); 
-            $table->foreign('subcription_id')->references('id')->on('subscriptions');
+            $table->bigInteger('subscription_id')->unsigned()->nullable(); 
+            $table->foreign('subscription_id')->references('id')->on('subscriptions');
 
             $table->timestamps();
         });

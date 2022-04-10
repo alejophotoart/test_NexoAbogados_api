@@ -17,15 +17,15 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
+        $faker = Faker::create(); //se utiliza la libreria faker
 
-    	foreach (range(1,10) as $index) {
+    	foreach (range(1,10) as $index) { //seeder que rellena y crea informacion del usuario
 	        DB::table('users')->insert([
-	            'name' => $faker->name,
+	            'name' => $faker->name, 
 	            'email' => $faker->email,
-	            'password' => Hash::make(Str::random(8)),
+	            'password' => Hash::make(Str::random(8)), //password cifrados
 	            'active' => $faker->boolean(),
-                'created_at' => $faker->dateTimeBetween($startDate = '-5 years', $endDate = 'now', $timezone = null),
+                'created_at' => $faker->dateTimeBetween($startDate = '-5 years', $endDate = 'now', $timezone = null), //fechas de creacion y modificacion entre los ultimos 5 años
                 'updated_at' => $faker->dateTimeBetween($startDate = '-5 years', $endDate = 'now', $timezone = null)
 	        ]);
 	    }

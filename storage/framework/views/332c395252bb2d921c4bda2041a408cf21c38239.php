@@ -1,3 +1,4 @@
+<!-- modal donde se muestra toda la informacion detalla de la suscripcion -->
 <div class="modal fade" id="detaillSub" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">

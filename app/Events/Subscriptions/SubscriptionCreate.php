@@ -25,7 +25,7 @@ class SubscriptionCreate
 
     public function __construct(Subscription $subscription)
     {
-        $this->subscription = $subscription;
+        $this->subscription = $subscription; //se recibe la informacion con el parametro listo para enviarse al listener
     }
 
     /**

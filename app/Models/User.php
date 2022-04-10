@@ -44,6 +44,6 @@ class User extends Authenticatable
 
     public function subcription()
     {
-        return $this->belongsTo(Subscription::class);
+        return $this->belongsTo(Subscription::class); //relacion con suscripciones para los usuarios uno a uno inversa
     }
 }

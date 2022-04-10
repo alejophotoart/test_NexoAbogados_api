@@ -11,6 +11,6 @@ class PriceSubscription extends Model
 
     public function subscriptions()
     {
-        return $this->hasMany(Subscription::class);
+        return $this->hasMany(Subscription::class); // se establece relacion de mucho a uno con subscripcion
     }
 }

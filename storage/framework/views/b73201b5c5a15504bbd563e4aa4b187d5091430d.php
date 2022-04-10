@@ -1,3 +1,4 @@
+<!-- Se reciben los mensajes del backend para la informacion del usuario -->
 <?php if($message = Session::get('warning')): ?>
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <strong><?php echo e($message); ?></strong>

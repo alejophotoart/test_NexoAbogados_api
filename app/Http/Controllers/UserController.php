@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = DB::table('users')
+        $users = DB::table('users') //se hace una consulta para que muestro solo los usuarios que no han sido suscriptos y que estan listos para una suscripcion
             ->whereNotExists(function ($query) {
                 $query->select(DB::raw(1))
                     ->from('subscriptions')
@@ -19,6 +19,6 @@ class UserController extends Controller
 
         // dd($users);
 
-        return view('users.index')->with('users', $users);
+        return view('users.index')->with('users', $users); //se envia la informacion a la vista para el usuario
     }
 }

@@ -1,10 +1,10 @@
 
 
-<?php $__env->startSection('content'); ?>
+<?php $__env->startSection('contents'); ?>
     <h1>Abogados</h1>
-
+<!-- tabla de abogados -->
     <?php echo $__env->make('message.pendingMessage', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
+<!-- COmienza la tabla -->
     <table class="table table-bordered">
     <thead>
         <tr>
@@ -42,7 +42,7 @@
    
     </tbody>
 </table>
-
+<!-- Se termina la tabla -->
 <script>
     window.addEventListener('DOMContentLoaded', (event) => {
         var miCheckboxes = document.querySelectorAll('.subsSwitch');
@@ -61,7 +61,7 @@
                     let name = arr2[1];
                     
                     localStorage.clear();
-                    localStorage.setItem('id', id);
+                    localStorage.setItem('id', id); //se guardan variables en el localstorage para enviarse a el modal de crear suscripcion
                     localStorage.setItem('name', name);
 
                     $('#modalName').attr('value', name);
@@ -76,7 +76,7 @@
 
     });
 </script>
-
+<!-- incluye a el modal de crear suscripcion -->
 <?php echo $__env->make('subscriptions.create', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <?php $__env->stopSection(); ?>

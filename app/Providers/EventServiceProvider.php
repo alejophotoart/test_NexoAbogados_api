@@ -20,7 +20,7 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        SubscriptionCreate::class => [
+        SubscriptionCreate::class => [ //se establece cual sera el listener que se ejecutara bajo este evento
             SubscriptionEmailNotifications::class,
         ],
     ];

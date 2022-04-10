@@ -1,10 +1,10 @@
 
 
-<?php $__env->startSection('content'); ?>
+<?php $__env->startSection('contents'); ?>
     <h1>Suscripciones</h1>
-
+<!-- tabla de suscripciones -->
     <?php echo $__env->make('message.deleteMessage', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
+<!-- comienza la tabla -->
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -51,11 +51,11 @@
     
         </tbody>
     </table>
-
+<!-- /Se termina la tabla -->
     <script>
         function showDetaills(id) {
     
-            $.ajax({
+            $.ajax({ //ajax que pinta la informacion detallada del modal
                 url: "/getDetaills/subscriptions/" + id,
                 type: "GET",
                 contentType: "application/json",
@@ -73,7 +73,7 @@
                     const options2 = { style: 'currency', currency: 'USD' };
                     const numberFormat2 = new Intl.NumberFormat('en-US', options2);
 
-                    $("#userName").val(detailuser.name);
+                    $("#userName").val(detailuser.name); //se pintan los valores en cada input correspondido
                     $("#userEmail").val(detailuser.email);
                     $("#subPrice").val(numberFormat2.format(detailPrice.price));
                     $("#userIn").val(detailuser.created_at);
@@ -94,8 +94,8 @@
             });
         }
     </script>
-
-    <?php echo $__env->make('subscriptions.detaill', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <!-- Se importa el modal -->
+    <?php echo $__env->make('subscriptions.detaill', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?> 
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\Nexoabogados\test_nexoabogados_api\resources\views/subscriptions/index.blade.php ENDPATH**/ ?>

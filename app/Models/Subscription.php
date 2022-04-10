@@ -13,16 +13,21 @@ class Subscription extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class); // se establece relacion con la informacion del cliente uno a uno inversa
     }
 
-    public function date_recurrent()
+    public function recurrent()
     {
-        return $this->belongsTo(Recurrent::class);
+        return $this->hasOne(Recurrent::class); // relacion con recurrencias uno a uno inversas
     }
 
     public function price_subs()
     {
-        return $this->hasOne(PriceSubscription::class, 'id', 'price_id');
+        return $this->hasOne(PriceSubscription::class, 'id', 'price_id'); //Relacion de uno a mucho con precios de la suscripcion
+    }
+
+    public function subs_rec_trie()
+    {
+        return $this->hasMany(SubscriptionRecurrentTrie::class); //Relacion con los intento de uno a mucho con intentos registrados
     }
 }

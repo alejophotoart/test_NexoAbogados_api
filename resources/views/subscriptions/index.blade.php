@@ -1,10 +1,10 @@
 @extends('index')
 
-@section('content')
+@section('contents')
     <h1>Suscripciones</h1>
-
+<!-- tabla de suscripciones -->
     @include('message.deleteMessage')
-
+<!-- comienza la tabla -->
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -51,11 +51,11 @@
     
         </tbody>
     </table>
-
+<!-- /Se termina la tabla -->
     <script>
         function showDetaills(id) {
     
-            $.ajax({
+            $.ajax({ //ajax que pinta la informacion detallada del modal
                 url: "/getDetaills/subscriptions/" + id,
                 type: "GET",
                 contentType: "application/json",
@@ -73,7 +73,7 @@
                     const options2 = { style: 'currency', currency: 'USD' };
                     const numberFormat2 = new Intl.NumberFormat('en-US', options2);
 
-                    $("#userName").val(detailuser.name);
+                    $("#userName").val(detailuser.name); //se pintan los valores en cada input correspondido
                     $("#userEmail").val(detailuser.email);
                     $("#subPrice").val(numberFormat2.format(detailPrice.price));
                     $("#userIn").val(detailuser.created_at);
@@ -94,7 +94,7 @@
             });
         }
     </script>
-
-    @include('subscriptions.detaill')
+    <!-- Se importa el modal -->
+    @include('subscriptions.detaill') 
 
 @endsection

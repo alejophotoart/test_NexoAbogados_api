@@ -12,7 +12,7 @@ class SubscriptionAttorney extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    protected $subscription;
+    protected $subscription; //se setea la variable que recibe los datos
     /**
      * Create a new notification instance.
      *
@@ -20,7 +20,7 @@ class SubscriptionAttorney extends Notification implements ShouldQueue
      */
     public function __construct(Subscription $subs)
     {
-        $this->subscription = $subs;
+        $this->subscription = $subs; //se recibe el parametro para el envio
     }
 
     /**
@@ -43,25 +43,32 @@ class SubscriptionAttorney extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
 
-        $title = "Suscripción a NexoAbogados";
+        logger($this->subscription->toArray()); // se coloca un loguen para saber que datos estan llegando (opcional)
+
+        $title = "Suscripción a NexoAbogados"; // se crean variables que contienen informacion para el envio del correo
         $name = $this->subscription->user->name;
         $price = $this->subscription->price_subs->price;
         $state = $this->subscription->confirmed;
+        $subscribed = $this->subscription->user->subscribed;
         $estado = "";
+        $aproved = "";
         $date_subs = $this->subscription->date_subscription;
-
-        if( $state == 0 ){
-            $estado = "Rechazada, Lo sentimos te invitamos a realizarla nuevamente";
+        
+        if( $state == 0 && $subscribed == 0){
+            $estado = "Rechazada.\nLo sentimos el dia de mañana estaremos reintentando nuevamente la suscripcion";
+            $aproved = "Cancelada";
         }else if( $state == 1 ){
-            $estado = "Aprovada, Esperamos que disfrutes mucho nuestro contenido";
+            $estado = "Aprobada.\nEsperamos que disfrutes mucho nuestro contenido";
+            $aproved = "Exitoso";
         }
 
         return (new MailMessage)
-                    ->subject($title)
-                    ->greeting('Hola, ' . $name)
-                    ->line('tu suscripcion a NexoAbogados por un valor de $'. number_format($price, 2, ",", ".") . ' fue '.$estado.'.')
-                    ->line('Tu fecha de suscripcion fue el '. $date_subs)
-                    ->line('Gracias por preferirnos!')
+                    ->subject($title) //titulo del correo
+                    ->greeting('Hola, ' . $name) //mensaje de saludo
+                    ->line('tu suscripcion a NexoAbogados por un valor de $'. number_format($price, 2, ",", ".") . ' fue '.$estado.'.') //descripcion de la compra y su valor
+                    ->line('Tu fecha de suscripcion es: '. $date_subs) //fecha en la que se realizo la suscripcion
+                    ->line('El estado de suscripcion es: '. $aproved) //el debido estado
+                    ->line('Gracias por preferirnos!') //mensaje de despedida
                     ->salutation("¡Saludos!.");
     }
 

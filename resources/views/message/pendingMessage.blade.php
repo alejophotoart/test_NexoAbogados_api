@@ -1,3 +1,4 @@
+<!-- Se reciben los mensajes del backend para la informacion del usuario -->
 @if($message = Session::get('warning'))
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <strong>{{ $message }}</strong>

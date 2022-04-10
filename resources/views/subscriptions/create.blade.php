@@ -1,3 +1,5 @@
+<!-- Modal donde se muestran los precios de suscripcion -->
+
 <div class="modal fade" id="createSub" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <form method="POST" action="{{ route('subscribed.user') }}">
@@ -41,7 +43,7 @@
     const options2 = { style: 'currency', currency: 'USD' };
     const numberFormat2 = new Intl.NumberFormat('en-US', options2);
 
-    $.ajax({
+    $.ajax({ //se traen los precios a travez de un ajax
       url: "/getPriceSubs",
       type: "GET",
       contentType: "application/json",
@@ -55,7 +57,7 @@
 
         for (var i = 0; i < pricesSubs.length; i++) {
           $("#selectPrice").append(
-            '<option value="' + pricesSubs[i].id + '">' + numberFormat2.format(pricesSubs[i].price) + "</option>"
+            '<option value="' + pricesSubs[i].id + '">' + numberFormat2.format(pricesSubs[i].price) + "</option>" //se llenan las opciones del select para el listado de precios
           );
         }
       }
@@ -63,7 +65,7 @@
 
   });
 
-    function closeModal() {
+    function closeModal() { //funcion que cierra el modal y desactiva el checkbox
 
         let miCheck = document.querySelectorAll('.subsSwitch');
         console.log(miCheck);
